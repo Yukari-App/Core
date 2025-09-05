@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Yukari.Core.Models
 {
-    internal class ChapterPage
-    {
-    }
+    public record ChapterPage(
+            string Id,
+            string Source,
+            int PageNumber,
+            string ImageUrl
+        );
 }
