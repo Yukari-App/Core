@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Yukari.Core.Sources
+﻿namespace Yukari.Core.Sources
 {
     internal interface IMangaSource
     {
