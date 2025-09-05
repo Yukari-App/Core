@@ -1,6 +1,15 @@
-﻿namespace Yukari.Core.Sources
+﻿using Yukari.Core.Models;
+
+namespace Yukari.Core.Sources
 {
-    internal interface IMangaSource
+    public interface IMangaSource
     {
+        string Name { get; }
+
+        Task<List<Manga>> SearchAsync(string query);
+        Task<List<Manga>> GetTrendingAsync();
+        Task<Manga?> GetDetailsAsync(string mangaId);
+        Task<List<Chapter>> GetAllChaptersAsync(string mangaId);
+        Task<List<ChapterPage>> GetChapterPagesAsync(string chapterId);
     }
 }
