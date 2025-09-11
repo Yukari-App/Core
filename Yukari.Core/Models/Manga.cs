@@ -5,10 +5,10 @@
             string Source,
             string Slug,
             string Title,
-            string Author,
-            string Description,
+            string? Author,
+            string? Description,
             string[] Tags,
-            int Year,
+            int? Year,
             string CoverImageUrl,
             string[] Langs
         );
