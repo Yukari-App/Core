@@ -6,10 +6,10 @@
             string? Title,
             string ChapterUrl,
             int Number,
-            string CoverImageUrl,
-            string Volume,
+            string? CoverImageUrl,
+            string? Volume,
             string Language,
-            string Groups,
+            string? Groups,
             DateOnly LastUpdate,
             int PagesNumber
         );
