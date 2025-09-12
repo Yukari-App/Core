@@ -9,7 +9,7 @@
             string? Description,
             string[] Tags,
             int? Year,
-            string CoverImageUrl,
+            string? CoverImageUrl,
             string[] Langs
         );
 }
