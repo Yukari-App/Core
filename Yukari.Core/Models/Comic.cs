@@ -1,6 +1,6 @@
 ﻿namespace Yukari.Core.Models
 {
-    public record Manga(
+    public record Comic(
             string Id,
             string Source,
             string Slug,

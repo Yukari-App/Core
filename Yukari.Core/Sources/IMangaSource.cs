@@ -6,9 +6,9 @@ namespace Yukari.Core.Sources
     {
         string Name { get; }
 
-        Task<List<Manga>> SearchAsync(string query);
-        Task<List<Manga>> GetTrendingAsync();
-        Task<Manga?> GetDetailsAsync(string mangaId);
+        Task<List<Comic>> SearchAsync(string query);
+        Task<List<Comic>> GetTrendingAsync();
+        Task<Comic?> GetDetailsAsync(string mangaId);
         Task<List<Chapter>> GetAllChaptersAsync(string mangaId);
         Task<List<ChapterPage>> GetChapterPagesAsync(string chapterId);
     }
