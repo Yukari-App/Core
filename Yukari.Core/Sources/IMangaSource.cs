@@ -1,10 +1,12 @@
-﻿using Yukari.Core.Models;
+using Yukari.Core.Models;
 
 namespace Yukari.Core.Sources
 {
     public interface IMangaSource
     {
         string Name { get; }
+        string? LogoUrl { get; }
+        string? Description { get; }
 
         IReadOnlyList<Filter> Filters { get; }
 
