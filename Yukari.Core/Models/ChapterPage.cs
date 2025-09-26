@@ -1,7 +1,7 @@
-﻿namespace Yukari.Core.Models
+namespace Yukari.Core.Models
 {
     public record ChapterPage(
-            string Id,
+            string? Id,
             string Source,
             int PageNumber,
             string ImageUrl
