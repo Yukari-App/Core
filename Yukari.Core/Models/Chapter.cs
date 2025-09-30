@@ -4,12 +4,12 @@ namespace Yukari.Core.Models
             string Id,
             string Source,
             string? Title,
-            int Number,
+            string Number,
             string? CoverImageUrl,
             string? Volume,
             string Language,
             string? Groups,
             DateOnly LastUpdate,
-            int PagesNumber
+            int Pages
         );
 }
