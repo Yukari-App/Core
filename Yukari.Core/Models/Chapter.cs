@@ -1,10 +1,9 @@
-﻿namespace Yukari.Core.Models
+namespace Yukari.Core.Models
 {
     public record Chapter(
             string Id,
             string Source,
             string? Title,
-            string ChapterUrl,
             int Number,
             string? CoverImageUrl,
             string? Volume,
