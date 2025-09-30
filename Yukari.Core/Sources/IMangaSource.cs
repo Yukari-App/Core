@@ -2,7 +2,7 @@ using Yukari.Core.Models;
 
 namespace Yukari.Core.Sources
 {
-    public interface IMangaSource
+    public interface IMangaSource : IAsyncDisposable
     {
         string Name { get; }
         string? LogoUrl { get; }
