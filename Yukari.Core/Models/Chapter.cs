@@ -5,7 +5,6 @@ namespace Yukari.Core.Models
             string Source,
             string? Title,
             string Number,
-            string? CoverImageUrl,
             string? Volume,
             string Language,
             string? Groups,
