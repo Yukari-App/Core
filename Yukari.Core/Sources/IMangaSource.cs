@@ -9,6 +9,7 @@ namespace Yukari.Core.Sources
         string? Description { get; }
 
         IReadOnlyList<Filter> Filters { get; }
+        IReadOnlyDictionary<string, string> Languages { get; }
 
         Task<List<Comic>> SearchAsync(string query, Dictionary<string, List<string>> filters);
         Task<List<Comic>> GetTrendingAsync(Dictionary<string, List<string>> filters);
