@@ -3,7 +3,7 @@ namespace Yukari.Core.Models
     public record Comic(
             string Id,
             string Source,
-            string MangaUrl,
+            string? MangaUrl,
             string Slug,
             string Title,
             string? Author,
