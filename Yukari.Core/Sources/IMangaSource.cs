@@ -11,10 +11,10 @@ namespace Yukari.Core.Sources
         IReadOnlyList<Filter> Filters { get; }
         IReadOnlyDictionary<string, string> Languages { get; }
 
-        Task<List<Comic>> SearchAsync(string query, Dictionary<string, List<string>> filters);
-        Task<List<Comic>> GetTrendingAsync(Dictionary<string, List<string>> filters);
+        Task<IReadOnlyList<Comic>> SearchAsync(string query, Dictionary<string, List<string>> filters);
+        Task<IReadOnlyList<Comic>> GetTrendingAsync(Dictionary<string, List<string>> filters);
         Task<Comic?> GetDetailsAsync(string mangaId);
-        Task<List<Chapter>> GetAllChaptersAsync(string mangaId, string language);
-        Task<List<ChapterPage>> GetChapterPagesAsync(string chapterId);
+        Task<IReadOnlyList<Chapter>> GetAllChaptersAsync(string mangaId, string language);
+        Task<IReadOnlyList<ChapterPage>> GetChapterPagesAsync(string chapterId);
     }
 }
