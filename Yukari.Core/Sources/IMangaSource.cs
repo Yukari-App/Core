@@ -5,6 +5,7 @@ namespace Yukari.Core.Sources
     public interface IMangaSource : IAsyncDisposable
     {
         string Name { get; }
+        string Version { get; }
         string? LogoUrl { get; }
         string? Description { get; }
 
