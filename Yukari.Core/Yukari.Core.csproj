@@ -7,7 +7,7 @@
 	<RootNamespace>Yukari.Core</RootNamespace>
 
 	<PackageId>Yukari.Core</PackageId>
-	<Version>0.13.0-alpha</Version>
+	<Version>1.0.0</Version>
 	<Authors>TXG0Fk3</Authors>
 	<Description>The API Contract and Data Models for the Yukari Ecosystem.</Description>
 	<PackageTags>manga;reader;plugin;core</PackageTags>
