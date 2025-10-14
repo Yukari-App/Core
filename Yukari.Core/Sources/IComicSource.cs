@@ -2,7 +2,7 @@ using Yukari.Core.Models;
 
 namespace Yukari.Core.Sources
 {
-    public interface IMangaSource : IAsyncDisposable
+    public interface IComicSource : IAsyncDisposable
     {
         string Name { get; }
         string Version { get; }
