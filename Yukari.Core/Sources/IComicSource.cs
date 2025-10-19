@@ -12,8 +12,8 @@ namespace Yukari.Core.Sources
         IReadOnlyList<Filter> Filters { get; }
         IReadOnlyDictionary<string, string> Languages { get; }
 
-        Task<IReadOnlyList<Comic>> SearchAsync(string query, Dictionary<string, List<string>> filters);
-        Task<IReadOnlyList<Comic>> GetTrendingAsync(Dictionary<string, List<string>> filters);
+        Task<IReadOnlyList<Comic>> SearchAsync(string query, Dictionary<string, IReadOnlyList<string>> filters);
+        Task<IReadOnlyList<Comic>> GetTrendingAsync(Dictionary<string, IReadOnlyList<string>> filters);
         Task<Comic?> GetDetailsAsync(string mangaId);
         Task<IReadOnlyList<Chapter>> GetAllChaptersAsync(string mangaId, string language);
         Task<IReadOnlyList<ChapterPage>> GetChapterPagesAsync(string chapterId);
