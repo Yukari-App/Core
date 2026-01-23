@@ -17,6 +17,6 @@ namespace Yukari.Core.Sources
         Task<Comic?> GetDetailsAsync(string comicId, CancellationToken ct = default);
         Task<Chapter?> GetChapterDetailsAsync(string comicId, string chapterId, CancellationToken ct = default);
         Task<IReadOnlyList<Chapter>> GetAllChaptersAsync(string comicId, string language, CancellationToken ct = default);
-        Task<IReadOnlyList<ChapterPage>> GetChapterPagesAsync(string chapterId, CancellationToken ct = default);
+        Task<IReadOnlyList<ChapterPage>> GetChapterPagesAsync(string comicId, string chapterId, CancellationToken ct = default);
     }
 }
