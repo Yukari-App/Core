@@ -4,7 +4,7 @@ namespace Yukari.Core.Models
             string Id,
             string Source,
             string? Title,
-            string Number,
+            string? Number,
             string? Volume,
             string Language,
             string? Groups,
