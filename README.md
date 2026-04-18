@@ -25,18 +25,19 @@ The main application **[Yukari](https://github.com/Yukari-App/Yukari)** (a moder
 
 - Create a new **Class Library** project (.NET 10)
 - Install the package:
-  ```xml
+```xml
   <PackageReference Include="Yukari.Core" Version="*" />
-  ```
-- Implement `IComicSource`:
-  ```cs
+```
+- Decorate your class with `[ComicSourceMetadata]` and implement `IComicSource`:
+```cs
+  [ComicSourceMetadata(
+      name: "My Source",
+      version: "1.0.0+core1.5.0", // Match your Yukari.Core version
+      logoUrl: null,
+      description: "Example comic source"
+  )]
   public class MyComicSource : IComicSource
   {
-      public string Name => "My Source";
-      public string Version => "1.0.0+core1.4.0"; // match your Yukari.Core version
-      public string? LogoUrl => null;
-      public string? Description => "Example comic source";
-
       public IReadOnlyList<Filter> Filters => Array.Empty<Filter>();
       public IReadOnlyDictionary<string, string> Languages =>
           new Dictionary<string, string> { ["en"] = "English" };
@@ -56,8 +57,9 @@ The main application **[Yukari](https://github.com/Yukari-App/Yukari)** (a moder
 
       public ValueTask DisposeAsync() => ValueTask.CompletedTask;
   }
-  ```
-- Build → get the ``.dll``
+```
+  > **Note:** The `[ComicSourceMetadata]` attribute is required. Yukari reads plugin metadata (name, version, logo, description) directly from the attribute without instantiating the class, so omitting it will cause the plugin to fail to load.
+- Build → get the `.dll`
 - Publish as a new repo in the org (or your own), with Releases containing the DLL.
 Current examples:  
   - [Plugin.MangaDex](https://github.com/Yukari-App/Plugin.MangaDex)  
@@ -68,6 +70,7 @@ Current examples:
   <h2>🗒️ Notes</h2>
 </div>
 
+- The `[ComicSourceMetadata]` attribute is the **only way** to declare plugin metadata — `Name`, `Version`, `LogoUrl` and `Description` are not part of `IComicSource`
 - Use a single/shared `HttpClient` instance with proper User-Agent
 - Consider static lazy initialization for **Filters** and **Languages**
 - Respect **rate limits** and implement proper **error handling**
