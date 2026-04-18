@@ -1,17 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-	<RootNamespace>Yukari.Core</RootNamespace>
+    <RootNamespace>Yukari.Core</RootNamespace>
 
-	<PackageId>Yukari.Core</PackageId>
-	<Version>1.4.0</Version>
-	<Authors>TXG0Fk3</Authors>
-	<Description>The API Contract and Data Models for the Yukari Ecosystem.</Description>
-	<PackageTags>manga;reader;plugin;core</PackageTags>
-	<RepositoryUrl>https://github.com/Yukari-App/Core</RepositoryUrl>
+    <PackageId>Yukari.Core</PackageId>
+    <Version>1.5.0</Version>
+    <Authors>TXG0Fk3</Authors>
+    <Description>The API Contract and Data Models for the Yukari Ecosystem.</Description>
+    <PackageTags>manga;reader;plugin;core</PackageTags>
+    <RepositoryUrl>https://github.com/Yukari-App/Core</RepositoryUrl>
   </PropertyGroup>
-
 </Project>
