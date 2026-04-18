@@ -4,11 +4,6 @@ namespace Yukari.Core.Sources
 {
     public interface IComicSource : IAsyncDisposable
     {
-        string Name { get; }
-        string Version { get; }
-        string? LogoUrl { get; }
-        string? Description { get; }
-
         IReadOnlyList<Filter> Filters { get; }
         IReadOnlyDictionary<string, string> Languages { get; }
 
