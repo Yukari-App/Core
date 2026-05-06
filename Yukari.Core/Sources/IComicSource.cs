@@ -10,6 +10,7 @@ public interface IComicSource : IAsyncDisposable
     Task<IReadOnlyList<Comic>> SearchAsync(
         string query,
         IReadOnlyDictionary<string, IReadOnlyList<string>> filters,
+        int page = 1,
         CancellationToken ct = default
     );
     Task<IReadOnlyList<Comic>> GetTrendingAsync(
