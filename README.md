@@ -32,7 +32,7 @@ The main application **[Yukari](https://github.com/Yukari-App/Yukari)** (a moder
 ```cs
   [ComicSourceMetadata(
       name: "My Source",
-      version: "1.0.0+core1.5.0", // Match your Yukari.Core version
+      version: "1.0.0+core2.0.0", // Match your Yukari.Core version
       logoUrl: null,
       description: "Example comic source"
   )]
@@ -52,7 +52,7 @@ The main application **[Yukari](https://github.com/Yukari-App/Yukari)** (a moder
           return Task.FromResult<IReadOnlyList<Comic>>(Array.Empty<Comic>());
       }
 
-      // Implement remaining methods: GetTrendingAsync, GetDetailsAsync, GetChapterDetailsAsync,
+      // Implement remaining methods: GetTrendingAsync, GetDetailsAsync,
       // GetAllChaptersAsync, GetChapterPagesAsync...
 
       public ValueTask DisposeAsync() => ValueTask.CompletedTask;
