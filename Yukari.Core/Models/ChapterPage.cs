@@ -1,3 +1,3 @@
 namespace Yukari.Core.Models;
 
-public record ChapterPage(string Source, int Number, string ImageUrl);
+public record ChapterPage(int Number, string ImageUrl);
