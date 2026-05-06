@@ -17,11 +17,6 @@ public interface IComicSource : IAsyncDisposable
         CancellationToken ct = default
     );
     Task<Comic?> GetDetailsAsync(string comicId, CancellationToken ct = default);
-    Task<Chapter?> GetChapterDetailsAsync(
-        string comicId,
-        string chapterId,
-        CancellationToken ct = default
-    );
     Task<IReadOnlyList<Chapter>> GetAllChaptersAsync(
         string comicId,
         string language,
