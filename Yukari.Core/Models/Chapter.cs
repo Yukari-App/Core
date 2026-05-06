@@ -7,7 +7,7 @@ public record Chapter(
     string? Number,
     string? Volume,
     string? Language,
-    string? Groups,
+    string[] Groups,
     DateOnly LastUpdate,
-    int Pages
+    int? Pages
 );
