@@ -4,7 +4,7 @@ public record Comic(
     string Id,
     string Source,
     string? ComicUrl,
-    string Slug,
+    string? Slug,
     string Title,
     string? Author,
     string? Description,
