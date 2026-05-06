@@ -6,7 +6,7 @@ namespace Yukari.Core.Models
         string? Title,
         string? Number,
         string? Volume,
-        string Language,
+        string? Language,
         string? Groups,
         DateOnly LastUpdate,
         int Pages
