@@ -3,6 +3,6 @@ namespace Yukari.Core.Models;
 public record Filter(
     string Key,
     string DisplayName,
-    List<FilterOption> Options,
+    IReadOnlyList<FilterOption> Options,
     bool AllowMultiple
 );
