@@ -10,5 +10,6 @@ public record Comic(
     string[] Tags,
     int? Year,
     string? CoverImageUrl,
-    string[] Langs
+    string[] Langs,
+    ComicStatus Status = ComicStatus.Unknown
 );
