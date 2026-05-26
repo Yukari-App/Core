@@ -32,7 +32,7 @@ The main application **[Yukari](https://github.com/Yukari-App/Yukari)** (a moder
 ```cs
   [ComicSourceMetadata(
       name: "My Source",
-      version: "1.0.0+core2.0.0", // Match your Yukari.Core version
+      version: "1.0.0+core2.1.0", // Match your Yukari.Core version
       logoUrl: null,
       description: "Example comic source"
   )]
