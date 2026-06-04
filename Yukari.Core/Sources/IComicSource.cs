@@ -15,6 +15,7 @@ public interface IComicSource : IAsyncDisposable
     );
     Task<IReadOnlyList<Comic>> GetTrendingAsync(
         IReadOnlyDictionary<string, IReadOnlyList<string>> filters,
+        int page = 1,
         CancellationToken ct = default
     );
     Task<Comic?> GetDetailsAsync(string comicId, CancellationToken ct = default);
