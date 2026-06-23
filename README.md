@@ -17,6 +17,7 @@
 It defines the `IComicSource` interface and all the necessary templates (`Comic`, `Chapter`, `ChapterPage`, `Filter`, etc.) that must be implemented by **comic plugins/sources**.
 
 The main application **[Yukari](https://github.com/Yukari-App/Yukari)** (a modern manga, webtoon, and comic book reader for Windows, built on WinUI 3 + .NET) dynamically loads these plugins to search, list, and read content from different websites and services without needing to modify the main code.
+
 </div>
 
 <div align="center">
@@ -25,14 +26,18 @@ The main application **[Yukari](https://github.com/Yukari-App/Yukari)** (a moder
 
 - Create a new **Class Library** project (.NET 10)
 - Install the package:
+
 ```xml
   <PackageReference Include="Yukari.Core" Version="*" />
 ```
+
 - Decorate your class with `[ComicSourceMetadata]` and implement `IComicSource`:
+
 ```cs
   [ComicSourceMetadata(
       name: "My Source",
-      version: "1.0.0+core2.1.0", // Match your Yukari.Core version
+      version: "1.0.0+core2.3.0", // Match your Yukari.Core version
+      ReleasesPage: "https://github.com/MyName/Yukari.Plugin.MySource/releases",
       logoUrl: null,
       description: "Example comic source"
   )]
@@ -45,6 +50,7 @@ The main application **[Yukari](https://github.com/Yukari-App/Yukari)** (a moder
       public Task<IReadOnlyList<Comic>> SearchAsync(
           string query,
           IReadOnlyDictionary<string, IReadOnlyList<string>> filters,
+          int page = 1,
           CancellationToken ct = default
       )
       {
@@ -58,13 +64,16 @@ The main application **[Yukari](https://github.com/Yukari-App/Yukari)** (a moder
       public ValueTask DisposeAsync() => ValueTask.CompletedTask;
   }
 ```
-  > **Note:** The `[ComicSourceMetadata]` attribute is required. Yukari reads plugin metadata (name, version, logo, description) directly from the attribute without instantiating the class, so omitting it will cause the plugin to fail to load.
+
+> **Note:** The `[ComicSourceMetadata]` attribute is required. Yukari reads plugin metadata (name, version, logo, description) directly from the attribute without instantiating the class, so omitting it will cause the plugin to fail to load.
+
 - Build → get the `.dll`
 - Publish as a new repo in the org (or your own), with Releases containing the DLL.
-Current examples:  
-  - [Plugin.MangaDex](https://github.com/Yukari-App/Plugin.MangaDex)  
+  Current examples:
+  - [Plugin.MangaDex](https://github.com/Yukari-App/Plugin.MangaDex)
+  - [Plugin.WeebCentral](https://github.com/Yukari-App/Plugin.WeebCentral)
   - [Plugin.ComicK](https://github.com/Yukari-App/Plugin.ComicK) (archived)  
-  Browse all: [Yukari-App repositories → Plugin.*](https://github.com/orgs/Yukari-App/repositories?q=Plugin+sort%3Aname-asc)
+    Browse all: [Yukari-App repositories → Plugin.\*](https://github.com/orgs/Yukari-App/repositories?q=Plugin+sort%3Aname-asc)
 
 <div align="center">
   <h2>🗒️ Notes</h2>
@@ -77,6 +86,13 @@ Current examples:
 - Return **empty collections** or `null` instead of throwing when no data is found (when reasonable)
 - All **async methods** should support `CancellationToken`
 - **XML documentation** on **public members** is highly appreciated
+- If your plugin depends on **third-party libraries**, merge them into a single `.dll` 
+  using [ILRepack.Lib.MSBuild.Task](https://www.nuget.org/packages/ILRepack.Lib.MSBuild.Task). Make sure to **exclude** 
+  `Yukari.Core` from the merge — including it would cause type identity conflicts 
+  at runtime, since the host already loads its own copy of the assembly
+- The reserved source name **"Local"** cannot be used as a plugin name — 
+  Yukari uses it internally for local comics and will reject any plugin 
+  that attempts to register with that name
 
 <div align="center">
   <h2>🤝 Contributing</h2>
@@ -92,4 +108,5 @@ Contributions are welcome! You can help improve **Yukari.Core** in several ways:
   <h2>📜 License</h2>
 
 This project is licensed under the **GPL-3.0**. See the [LICENSE](LICENSE) file for details.
+
 </div>
