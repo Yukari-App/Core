@@ -18,6 +18,8 @@ It defines the `IComicSource` interface and all the necessary templates (`Comic`
 
 The main application **[Yukari](https://github.com/Yukari-App/Yukari)** (a modern manga, webtoon, and comic book reader for Windows, built on WinUI 3 + .NET) dynamically loads these plugins to search, list, and read content from different websites and services without needing to modify the main code.
 
+**Now stable** — the Core API is solid and ready for third‑party plugin development.
+
 </div>
 
 <div align="center">
@@ -80,6 +82,7 @@ The main application **[Yukari](https://github.com/Yukari-App/Yukari)** (a moder
 </div>
 
 - The `[ComicSourceMetadata]` attribute is the **only way** to declare plugin metadata — `Name`, `Version`, `LogoUrl` and `Description` are not part of `IComicSource`
+- Versioning matters — the `version` field should include the targeted Core version in the format `+coreX.Y.Z` (e.g., `1.0.0+core2.3.0`). Yukari uses this to detect outdated plugins and show an update badge in the settings. Plugins that omit this convention simply won't show the badge
 - Use a single/shared `HttpClient` instance with proper User-Agent
 - Consider static lazy initialization for **Filters** and **Languages**
 - Respect **rate limits** and implement proper **error handling**
