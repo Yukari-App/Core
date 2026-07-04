@@ -74,7 +74,7 @@ The main application **[Yukari](https://github.com/Yukari-App/Yukari)** (a moder
   Current examples:
   - [Plugin.MangaDex](https://github.com/Yukari-App/Plugin.MangaDex)
   - [Plugin.WeebCentral](https://github.com/Yukari-App/Plugin.WeebCentral)
-  - [Plugin.ComicK](https://github.com/Yukari-App/Plugin.ComicK) (archived)  
+  - [Plugin.MangaKatana](https://github.com/Yukari-App/Plugin.MangaKatana)  
     Browse all: [Yukari-App repositories → Plugin.\*](https://github.com/orgs/Yukari-App/repositories?q=Plugin+sort%3Aname-asc)
 
 <div align="center">
