@@ -29,4 +29,5 @@ public interface IComicSource : IAsyncDisposable
         string chapterId,
         CancellationToken ct = default
     );
+    Task<byte[]?> GetImageBytesAsync(string imageUrl, CancellationToken ct = default);
 }
