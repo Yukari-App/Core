@@ -18,8 +18,6 @@ It defines the `IComicSource` interface and all the necessary templates (`Comic`
 
 The main application **[Yukari](https://github.com/Yukari-App/Yukari)** (a modern manga, webtoon, and comic book reader for Windows, built on WinUI 3 + .NET) dynamically loads these plugins to search, list, and read content from different websites and services without needing to modify the main code.
 
-**Now stable** — the Core API is solid and ready for third‑party plugin development.
-
 </div>
 
 <div align="center">
@@ -43,11 +41,15 @@ The main application **[Yukari](https://github.com/Yukari-App/Yukari)** (a moder
       logoUrl: null,
       description: "Example comic source"
   )]
-  public class MyComicSource : IComicSource
+  public class MyComicSource : IComicSource, IRequiresHttpClient
   {
+      private ISharedHttpClient? _httpClient;
+
       public IReadOnlyList<Filter> Filters => Array.Empty<Filter>();
       public IReadOnlyDictionary<string, string> Languages =>
           new Dictionary<string, string> { ["en"] = "English" };
+
+      public void SetHttpClient(ISharedHttpClient sharedHttpClient) => _httpClient = sharedHttpClient;
 
       public Task<IReadOnlyList<Comic>> SearchAsync(
           string query,
@@ -61,7 +63,7 @@ The main application **[Yukari](https://github.com/Yukari-App/Yukari)** (a moder
       }
 
       // Implement remaining methods: GetTrendingAsync, GetDetailsAsync,
-      // GetAllChaptersAsync, GetChapterPagesAsync...
+      // GetAllChaptersAsync, GetChapterPagesAsync, GetImageBytesAsync...
 
       public ValueTask DisposeAsync() => ValueTask.CompletedTask;
   }
@@ -83,7 +85,7 @@ The main application **[Yukari](https://github.com/Yukari-App/Yukari)** (a moder
 
 - The `[ComicSourceMetadata]` attribute is the **only way** to declare plugin metadata — `Name`, `Version`, `LogoUrl` and `Description` are not part of `IComicSource`
 - Versioning matters — the `version` field should include the targeted Core version in the format `+coreX.Y.Z` (e.g., `1.0.0+core2.3.0`). Yukari uses this to detect outdated plugins and show an update badge in the settings. Plugins that omit this convention simply won't show the badge
-- Use a single/shared `HttpClient` instance with proper User-Agent
+- **Shared HttpClient** (since Core 2.4.0): Implement `IRequiresHttpClient` to receive an `ISharedHttpClient` instance. This promotes connection reuse and allows custom headers per request without managing your own `HttpClient` pool
 - Consider static lazy initialization for **Filters** and **Languages**
 - Respect **rate limits** and implement proper **error handling**
 - Return **empty collections** or `null` instead of throwing when no data is found (when reasonable)
