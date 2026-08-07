@@ -7,6 +7,6 @@ public record Chapter(
     string? Volume,
     string? Language,
     string[] Groups,
-    DateOnly LastUpdate,
+    DateOnly? LastUpdate,
     int? Pages
 );
