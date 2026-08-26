@@ -1,4 +1,4 @@
-namespace Yukari.Core.Sources;
+namespace Yukari.Core.Sources.Http;
 
 public interface ISharedHttpClient
 {
