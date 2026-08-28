@@ -4,9 +4,11 @@ public interface IBrowserService : IAsyncDisposable
 {
     void SetHost(IBrowserHost host);
 
-    Task<BrowserSession?> ResolveChallengeAsync(
+    Task<BrowserSession> ResolveChallengeAsync(
         string url,
         TimeSpan? timeout = null,
+        string? challengeDetectionScript = null,
+        TimeSpan? autoResolveTimeout = null,
         CancellationToken ct = default
     );
 
