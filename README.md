@@ -36,7 +36,7 @@ The main application **[Yukari](https://github.com/Yukari-App/Yukari)** (a moder
 ```cs
   [ComicSourceMetadata(
       name: "My Source",
-      version: "1.0.0+core2.4.0", // Match your Yukari.Core version
+      version: "1.0.0+core2.5.0", // Match your Yukari.Core version
       ReleasesPage: "https://github.com/MyName/Yukari.Plugin.MySource/releases",
       logoUrl: null,
       description: "Example comic source"
@@ -84,8 +84,9 @@ The main application **[Yukari](https://github.com/Yukari-App/Yukari)** (a moder
 </div>
 
 - The `[ComicSourceMetadata]` attribute is the **only way** to declare plugin metadata — `Name`, `Version`, `LogoUrl` and `Description` are not part of `IComicSource`
-- Versioning matters — the `version` field should include the targeted Core version in the format `+coreX.Y.Z` (e.g., `1.0.0+core2.4.0`). Yukari uses this to detect outdated plugins and show an update badge in the settings. Plugins that omit this convention simply won't show the badge
+- Versioning matters — the `version` field should include the targeted Core version in the format `+coreX.Y.Z` (e.g., `1.0.0+core2.5.0`). Yukari uses this to detect outdated plugins and show an update badge in the settings. Plugins that omit this convention simply won't show the badge
 - **Shared HttpClient** (since Core 2.4.0): Implement `IRequiresHttpClient` to receive an `ISharedHttpClient` instance. This promotes connection reuse and allows custom headers per request without managing your own `HttpClient` pool
+- **Browser Service** (since Core 2.5.0): Implement `IRequiresBrowser` to receive an `IBrowserService` instance for bypassing anti-bot challenges. The browser environment is managed by Yukari and shared across all plugins
 - Consider static lazy initialization for **Filters** and **Languages**
 - Respect **rate limits** and implement proper **error handling**
 - Return **empty collections** or `null` instead of throwing when no data is found (when reasonable)
