@@ -36,8 +36,8 @@ The main application **[Yukari](https://github.com/Yukari-App/Yukari)** (a moder
 ```cs
   [ComicSourceMetadata(
       name: "My Source",
-      version: "1.0.0+core2.5.0", // Match your Yukari.Core version
-      ReleasesPage: "https://github.com/MyName/Yukari.Plugin.MySource/releases",
+      version: "1.0.0+core2.6.0", // Match your Yukari.Core version
+      releasesPage: "https://github.com/MyName/Yukari.Plugin.MySource/releases",
       logoUrl: null,
       description: "Example comic source"
   )]
@@ -84,9 +84,37 @@ The main application **[Yukari](https://github.com/Yukari-App/Yukari)** (a moder
 </div>
 
 - The `[ComicSourceMetadata]` attribute is the **only way** to declare plugin metadata — `Name`, `Version`, `LogoUrl` and `Description` are not part of `IComicSource`
-- Versioning matters — the `version` field should include the targeted Core version in the format `+coreX.Y.Z` (e.g., `1.0.0+core2.5.0`). Yukari uses this to detect outdated plugins and show an update badge in the settings. Plugins that omit this convention simply won't show the badge
+- Versioning matters — the `version` field should include the targeted Core version in the format `+coreX.Y.Z` (e.g., `1.0.0+core2.6.0`). Yukari uses this to detect outdated plugins and show an update badge in the settings. Plugins that omit this convention simply won't show the badge
 - **Shared HttpClient** (since Core 2.4.0): Implement `IRequiresHttpClient` to receive an `ISharedHttpClient` instance. This promotes connection reuse and allows custom headers per request without managing your own `HttpClient` pool
 - **Browser Service** (since Core 2.5.0): Implement `IRequiresBrowser` to receive an `IBrowserService` instance for bypassing anti-bot challenges. The browser environment is managed by Yukari and shared across all plugins
+- **Source Settings** (since Core 2.6.0): Implement `IConfigurableSource` to expose user-configurable settings (toggles, text fields, passwords, numbers, single and multiple choice). The host loads and applies settings automatically via `ApplySettings(ISourceSettings settings)`. Example (e.g. MangaDex Data Saver):
+
+```cs
+public class MangaDexSource : IComicSource, IConfigurableSource
+{
+    private bool _dataSaver;
+
+    public IReadOnlyList<SourceSetting> Settings =>
+    [
+        new ToggleSetting
+        {
+            Key = "data_saver",
+            Header = "Data Saver",
+            Description = "Compresses images to save bandwidth.",
+            DefaultValue = false
+        }
+    ];
+
+    public void ApplySettings(ISourceSettings settings)
+    {
+        _dataSaver = settings.GetBool("data_saver", defaultValue: false);
+    }
+
+    // Use _dataSaver when fetching chapter pages...
+}
+```
+- Return **chapters in ascending reading order** (oldest / chapter 1 first) in `GetAllChaptersAsync`, as Yukari assigns sequential sort order from the returned list index
+- All source image URLs (`LogoUrl`, `Comic.CoverImageUrl`, and `ChapterPage.ImageUrl`) are fetched through `GetImageBytesAsync`, allowing plugins to attach custom headers (such as `Referer` or cookies) when downloading images
 - Consider static lazy initialization for **Filters** and **Languages**
 - Respect **rate limits** and implement proper **error handling**
 - Return **empty collections** or `null` instead of throwing when no data is found (when reasonable)
