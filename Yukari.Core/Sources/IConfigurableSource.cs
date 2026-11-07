@@ -20,8 +20,8 @@ public interface IConfigurableSource
     /// </para>
     /// <para>
     /// It may be called on the UI thread while requests are actively in flight. Implementations
-    /// must be fast, non-blocking, and perform no I/O. Implementations should build an immutable
-    /// state snapshot and assign it to an internal field in a single atomic write.
+    /// must be fast, non-blocking, and perform no I/O. If multiple settings depend on each other,
+    /// consider grouping them into an immutable state object and assigning it in a single write.
     /// </para>
     /// <para>
     /// Keys not declared in <see cref="Settings"/> are ignored by the host. If a key's stored type
