@@ -3,7 +3,10 @@ namespace Yukari.Core.Models;
 /// <summary>
 /// Represents a single chapter of a comic returned by a <see cref="Sources.IComicSource"/>.
 /// </summary>
-/// <param name="Id">The unique identifier of the chapter within its comic source.</param>
+/// <param name="Id">
+/// The unique identifier of the chapter within its comic source. Must not contain path separator characters
+/// (such as <c>/</c> or <c>\</c>), as the host uses the identifier directly when organizing local directories.
+/// </param>
 /// <param name="Title">The optional title of the chapter.</param>
 /// <param name="Number">The chapter number (for example, <c>"1"</c> or <c>"12.5"</c>).</param>
 /// <param name="Volume">The volume number or label the chapter belongs to, if any.</param>

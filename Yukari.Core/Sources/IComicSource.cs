@@ -59,7 +59,7 @@ public interface IComicSource : IAsyncDisposable
     /// <summary>
     /// Retrieves the full metadata details of a specific comic.
     /// </summary>
-    /// <param name="comicId">The unique identifier of the comic within this source.</param>
+    /// <param name="comicId">The unique identifier of the comic within this source. Must not contain path separator characters (such as <c>/</c> or <c>\</c>).</param>
     /// <param name="ct">A token to cancel the asynchronous operation.</param>
     /// <returns>The <see cref="Comic"/> details, or <see langword="null"/> if the comic was not found.</returns>
     Task<Comic?> GetDetailsAsync(string comicId, CancellationToken ct = default);
@@ -71,7 +71,7 @@ public interface IComicSource : IAsyncDisposable
     /// Implementations should return chapters in ascending chronological/reading order (oldest or first chapter first),
     /// as the host assigns sequential sort order from the returned list index.
     /// </remarks>
-    /// <param name="comicId">The unique identifier of the comic within this source.</param>
+    /// <param name="comicId">The unique identifier of the comic within this source. Must not contain path separator characters (such as <c>/</c> or <c>\</c>).</param>
     /// <param name="language">The source-defined language key (from <see cref="Languages"/> or <see cref="Comic.Langs"/>) to filter chapters by.</param>
     /// <param name="ct">A token to cancel the asynchronous operation.</param>
     /// <returns>A read-only list of <see cref="Chapter"/> items in ascending reading order.</returns>
@@ -84,8 +84,8 @@ public interface IComicSource : IAsyncDisposable
     /// <summary>
     /// Retrieves the ordered list of pages for a specific chapter.
     /// </summary>
-    /// <param name="comicId">The unique identifier of the comic within this source.</param>
-    /// <param name="chapterId">The unique identifier of the chapter within this source.</param>
+    /// <param name="comicId">The unique identifier of the comic within this source. Must not contain path separator characters (such as <c>/</c> or <c>\</c>).</param>
+    /// <param name="chapterId">The unique identifier of the chapter within this source. Must not contain path separator characters (such as <c>/</c> or <c>\</c>).</param>
     /// <param name="ct">A token to cancel the asynchronous operation.</param>
     /// <returns>A read-only list of <see cref="ChapterPage"/> items for the chapter.</returns>
     Task<IReadOnlyList<ChapterPage>> GetChapterPagesAsync(

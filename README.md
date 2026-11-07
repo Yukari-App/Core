@@ -127,6 +127,7 @@ public class MangaDexSource : IComicSource, IConfigurableSource
 - The reserved source name **"Local"** cannot be used as a plugin name — 
   Yukari uses it internally for local comics and will reject any plugin 
   that attempts to register with that name
+- **Identifiers must not contain path separators**: Comic IDs (`Comic.Id`) and chapter IDs (`Chapter.Id`) are used directly by the host for local file caching and directory structures. They must not contain file path separator characters (such as `/` or `\`). If the upstream source uses URLs or slashes in identifiers, sanitize or encode them (e.g., replace `/` with hyphens or underscores)
 
 <div align="center">
   <h2>🤝 Contributing</h2>

@@ -3,7 +3,10 @@ namespace Yukari.Core.Models;
 /// <summary>
 /// Represents a comic series and its metadata returned by a <see cref="Sources.IComicSource"/>.
 /// </summary>
-/// <param name="Id">The unique identifier of the comic within its source.</param>
+/// <param name="Id">
+/// The unique identifier of the comic within its source. Must not contain path separator characters
+/// (such as <c>/</c> or <c>\</c>), as the host uses the identifier directly when organizing local directories.
+/// </param>
 /// <param name="ComicUrl">The canonical web URL of the comic on the source website, if available.</param>
 /// <param name="Title">The display title of the comic.</param>
 /// <param name="Author">The author or artist of the comic, if known.</param>
