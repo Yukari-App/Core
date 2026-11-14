@@ -24,7 +24,7 @@ The main application **[Yukari](https://github.com/Yukari-App/Yukari)** (a moder
   <h2>✍️ How to Create a ComicSource</h2>
 </div>
 
-- Create a new **Class Library** project (.NET 10)
+- Create a new **Class Library** project (.NET 11)
 - Install the package:
 
 ```xml
