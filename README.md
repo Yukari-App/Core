@@ -83,8 +83,8 @@ The main application **[Yukari](https://github.com/Yukari-App/Yukari)** (a moder
   <h2>🗒️ Notes</h2>
 </div>
 
-- The `[ComicSourceMetadata]` attribute is the **only way** to declare plugin metadata — `Name`, `Version`, `LogoUrl` and `Description` are not part of `IComicSource`
-- Versioning matters — the `version` field should include the targeted Core version in the format `+coreX.Y.Z` (e.g., `1.0.0+core2.6.0`). Yukari uses this to detect outdated plugins and show an update badge in the settings. Plugins that omit this convention simply won't show the badge
+- The `[ComicSourceMetadata]` attribute is the **only way** to declare plugin metadata; `Name`, `Version`, `LogoUrl` and `Description` are not part of `IComicSource`
+- Versioning matters: the `version` field should include the targeted Core version in the format `+coreX.Y.Z` (e.g., `1.0.0+core2.6.0`). Yukari uses this to detect outdated plugins and show an update badge in the settings. Plugins that omit this convention simply won't show the badge
 - **Shared HttpClient** (since Core 2.4.0): Implement `IRequiresHttpClient` to receive an `ISharedHttpClient` instance. This promotes connection reuse and allows custom headers per request without managing your own `HttpClient` pool
 - **Browser Service** (since Core 2.5.0): Implement `IRequiresBrowser` to receive an `IBrowserService` instance for bypassing anti-bot challenges. The browser environment is managed by Yukari and shared across all plugins
 - **Source Settings** (since Core 2.6.0): Implement `IConfigurableSource` to expose user-configurable settings (toggles, text fields, passwords, numbers, single and multiple choice). The host loads and applies settings automatically via `ApplySettings(ISourceSettings settings)`. Example (e.g. MangaDex Data Saver):
@@ -122,9 +122,9 @@ public class MangaDexSource : IComicSource, IConfigurableSource
 - **XML documentation** on **public members** is highly appreciated
 - If your plugin depends on **third-party libraries**, merge them into a single `.dll` 
   using [ILRepack.Lib.MSBuild.Task](https://www.nuget.org/packages/ILRepack.Lib.MSBuild.Task). Make sure to **exclude** 
-  `Yukari.Core` from the merge — including it would cause type identity conflicts 
+  `Yukari.Core` from the merge; including it would cause type identity conflicts 
   at runtime, since the host already loads its own copy of the assembly
-- The reserved source name **"Local"** cannot be used as a plugin name — 
+- The reserved source name **"Local"** cannot be used as a plugin name. 
   Yukari uses it internally for local comics and will reject any plugin 
   that attempts to register with that name
 - **Identifiers must not contain path separators**: Comic IDs (`Comic.Id`) and chapter IDs (`Chapter.Id`) are used directly by the host for local file caching and directory structures. They must not contain file path separator characters (such as `/` or `\`). If the upstream source uses URLs or slashes in identifiers, sanitize or encode them (e.g., replace `/` with hyphens or underscores)
